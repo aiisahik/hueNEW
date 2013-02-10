@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="{{ MEDIA_URL }}js/libraries/underscore.js"></script>
 	<script type="text/javascript" src="{{ MEDIA_URL }}js/libraries/backbone.min.js"></script>
 	<script type="text/javascript" src="{{ MEDIA_URL }}js/libraries/backbone.marionette.min.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}js/hearst-api.js"></script>
 	<link type="text/css" rel="stylesheet" href="{{MEDIA_URL}}css/bootstrap.min.css" />
 	<link type="text/css" rel="stylesheet" href="{{MEDIA_URL}}css/bootstrap-responsive.min.css" />
 	<link type="text/css" rel="stylesheet" href="{{MEDIA_URL}}css/main.css" />
@@ -35,213 +36,62 @@
 
 	</script>
 
-	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	
 	<script>
-		(function( $ ){
-			"use strict";
-			var negativeDate = -62198755200000,
-			    negativeYearString = "-000001";
-			if (
-			    !Date.prototype.toISOString ||
-			    (new Date(negativeDate).toISOString().indexOf(negativeYearString) === -1)
-			) {
-			    Date.prototype.toISOString = function toISOString() {
-			        var result, length, value, year, month;
-			        if (!isFinite(this)) {
-			            throw new RangeError("Date.prototype.toISOString called on non-finite value.");
-			        }
+		$(document).ready(function(){
+			$.getArticles('0');
 
-			        year = this.getUTCFullYear();
+			// "use strict";
+			// var negativeDate = -62198755200000,
+			//     negativeYearString = "-000001";
+			// if (
+			//     !Date.prototype.toISOString ||
+			//     (new Date(negativeDate).toISOString().indexOf(negativeYearString) === -1)
+			// ) {
+			//     Date.prototype.toISOString = function toISOString() {
+			//         var result, length, value, year, month;
+			//         if (!isFinite(this)) {
+			//             throw new RangeError("Date.prototype.toISOString called on non-finite value.");
+			//         }
 
-			        month = this.getUTCMonth();
-			        // see https://github.com/kriskowal/es5-shim/issues/111
-			        year += Math.floor(month / 12);
-			        month = (month % 12 + 12) % 12;
+			//         year = this.getUTCFullYear();
 
-			        // the date time string format is specified in 15.9.1.15.
-			        result = [month + 1, this.getUTCDate(),
-			            this.getUTCHours(), this.getUTCMinutes(), this.getUTCSeconds()];
-			        year = (
-			            (year < 0 ? "-" : (year > 9999 ? "+" : "")) +
-			            ("00000" + Math.abs(year))
-			            .slice(0 <= year && year <= 9999 ? -4 : -6)
-			        );
+			//         month = this.getUTCMonth();
+			//         // see https://github.com/kriskowal/es5-shim/issues/111
+			//         year += Math.floor(month / 12);
+			//         month = (month % 12 + 12) % 12;
 
-			        length = result.length;
-			        while (length--) {
-			            value = result[length];
-			            // pad months, days, hours, minutes, and seconds to have two
-			            // digits.
-			            if (value < 10) {
-			                result[length] = "0" + value;
-			            }
-			        }
-			        // pad milliseconds to have three digits.
-			        return (
-			            year + "-" + result.slice(0, 2).join("-") +
-			            "T" + result.slice(2).join(":") + "." +
-			            ("000" + this.getUTCMilliseconds()).slice(-3) + "Z"
-			        );
-			    };
-			}
+			//         // the date time string format is specified in 15.9.1.15.
+			//         result = [month + 1, this.getUTCDate(),
+			//             this.getUTCHours(), this.getUTCMinutes(), this.getUTCSeconds()];
+			//         year = (
+			//             (year < 0 ? "-" : (year > 9999 ? "+" : "")) +
+			//             ("00000" + Math.abs(year))
+			//             .slice(0 <= year && year <= 9999 ? -4 : -6)
+			//         );
 
-			$.getArticles = function getArticles( options, fn ){
-				//define our initial api url and data type we're expecting
-				var ajaxOptions = {
-					url: 'http://hearst.api.mashery.com/Article/search',
-					jsonp: '_callback',
-					dataType: 'jsonp',
-					cache: true
-				};
+			//         length = result.length;
+			//         while (length--) {
+			//             value = result[length];
+			//             // pad months, days, hours, minutes, and seconds to have two
+			//             // digits.
+			//             if (value < 10) {
+			//                 result[length] = "0" + value;
+			//             }
+			//         }
+			//         // pad milliseconds to have three digits.
+			//         return (
+			//             year + "-" + result.slice(0, 2).join("-") +
+			//             "T" + result.slice(2).join(":") + "." +
+			//             ("000" + this.getUTCMilliseconds()).slice(-3) + "Z"
+			//         );
+			//     };
+			// }
+
+			
+
 				
-				//list of the valid api options
-				var validArgs = [
-					'article_category_id', 'article_id', 'article_section_id', 'article_source_id',
-					'article_template_id', 'article_type_id', 'author_id', 'body', 'creation_date_begin',
-					'creation_date_end', 'flow_id', 'import_ucid', 'is_an_import', 'issue_date',
-					'keywords', 'last_updated_by', 'last_updated_date_begin', 'last_updated_date_end',
-					'limit', 'print_issue_date', 'publish_date_begin', 'publish_date_end', 'published_only',
-					'rights_for_syndicate_id', 'shape', 'site_id', 'sort', 'start', 'sub_heading', 'api_key',
-					'ad_category_id', 'teaser', 'title', 'url_name', 'verbose', '_debug', '_pretty', '_callback'
-				], validArgCount = 0; //keep track of valid options.. we're going to require at least 1
-				
-				//options that require an ISO 8601 formatted date string
-				var dateArgs = [
-					'creation_date_begin', 'creation_date_end',
-					'publish_date_begin', 'publish_date_end',
-					'last_updated_date_begin', 'last_updated_date_end'
-				], date; //temp date we'll use for conversions
-				
-				//loop through all of the options being passed in
-				for ( var prop in options ){
-					if ( options.hasOwnProperty(prop) ){
-						//check to see if the option is valid
-						if ( validArgs.indexOf( prop ) > -1 ){
-							validArgCount++; //increment the number of valid args we have
-						} else {
-							//if the arg passed isn't valid, shoot out a warning and remove it
-							console.warn('getArticles: ' + prop + ' is not a valid option.');
-							delete options[ prop ];
-						}
-						//check to see if this argument is a date
-						if ( dateArgs.indexOf( prop ) > -1 ){
-							//try to create a new Date object from the value
-							date = new Date( options[prop] );
-							//if the product is an invlid date, throw an error
-							if ( date.toString() === "Invalid Date" || options[prop] === false || options[prop] === true || options[prop] === null ){
-								throw new Error('getArticles: ' + prop + ' contains an invalid date.');
-							}
-							//assure the arg is set to a ISO formatted date string
-							options[ prop ] = date.toISOString();
-						}
-					}
-				}
-				//if we don't have at least one valid arg, throw an error
-				if ( validArgCount < 1 ){ throw new Error('getArticles: Invalid Options'); }
-				//add the arguments and the callback to the ajax options
-				$.extend( ajaxOptions, {
-					data:    options,
-					success: ( $.isFunction(fn) ) ? fn : $.noop
-				});
-				//execute the ajax request and return the promise returned by jquery
-				return $.ajax( ajaxOptions );
-			};
-			})( jQuery );
-	</script>
-	<script>
-		(function(win, doc, $){
-			_.templateSettings = {
-				escape: /\{\{-([\s\S]+?)\}\}/g,
-				evaluate: /\{\{([\s\S]+?)\}\}/g,
-				interpolate : /\{\{=([\s\S]+?)\}\}/g
-			};
-
-			var options = {
-					api_key: 'ms8wq5a5275wpa3xde3jprx6',
-					site_id: 17,
-					limit: 18,
-					article_type_id: 1365,
-					start: 0,
-					shape: 'full'
-				};
-
-			var raf = (function(){
-					return  win.requestAnimationFrame       ||
-							win.oRequestAnimationFrame      ||
-							win.msRequestAnimationFrame     ||
-							win.mozRequestAnimationFrame    ||
-							win.webkitRequestAnimationFrame ||
-							function(fn){ setTimeout(fn, 1000/60); };
-				})();
-
-			var wh = win.innerHeight, //window height
-				sy = 0; //scroll y
-
-			var busy = false;
-
-			var loaded = 0,
-				total  = 0;
-
-			var target   = $('#hm-articles'),
-				loader   = $('#hm-loading'),
-				template = $('#item-template').html(),
-				doc      = $(doc);
-
-			$(win).on('resize', onResize)
-				  .on('scroll', onScroll);
-
-			getArticles();
-
-			function onScroll( evt ){
-				sy = window.scrollY;
-				if ( !busy && doc.height() - ( wh + sy ) < 1000 ){
-					busy = true;
-					getArticles();
-				}
-			}
-
-			function onResize( evt ){
-				wh = window.innerHeight;
-				if ( !busy && doc.height() - ( wh + sy ) < 1000 ){
-					busy = true;
-					getArticles();
-				}
-			}
-
-			function addArticles( json ){
-				target.append( _.template( template, { items: json.items }) );
-			}
-
-			function getArticles(){
-				var xhr = $.getArticles( options );
-
-				xhr.done(function(json){
-					
-					if ( total < 1 ){
-						total = json.total;
-						while ( total % options.limit > 0 ){
-							total--;
-						}
-					}
-
-					if ( loaded === total ){
-						$(win).off('scroll')
-							  .off('resize');
-					}
-
-					loaded += json.items.length;
-
-					raf(function(){
-						addArticles( json );
-					});
-
-					options.start += options.limit;
-					
-					busy = false;
-				});
-			}
-
-		})(window, document, jQuery);
+			}); // /function
 	</script>
 
 <div id="gleeBox" style="display:none" class="GleeThemeDefault gleeMediumSize"><input type="text" id="gleeSearchField" value="" autocomplete="off" class="ac_input GleeThemeDefault gleeMediumSize"><div id="gleeSub"><div id="gleeSubText"></div><div id="gleeSearchActivity"></div><div id="gleeSubURL"></div></div></div></body><style type="text/css">/*This block of style rules is injected by gleeBox*/.GleeReaped { background-color: #f9f2a5 !important; outline: 1px dotted #818181 !important; } .GleeHL { -webkit-box-shadow: hsla(71, 89%, 70%, 1) -2px -2px 0px, hsla(71, 89%, 70%, 1)  2px -2px 0px, hsla(71, 100%, 45%, 1) -2px  2px 0px, hsla(71, 100%, 45%, 1)  2px  2px 0px, hsla(71, 100%, 80%, 1)  0px 0px 0px 3px, rgba(42, 35, 0, 0.8)  1px  1px 3px 3px !important; border-radius: 3px !important; color: #000 !important; outline: none !important; border: none !important; background: -webkit-gradient(linear, left bottom, left top, color-stop(0, hsla(71, 100%, 47%, 1)), color-stop(1, hsla(71, 89%, 70%, 1))) !important;} a.GleeHL, .GleeHL a {color: #000 !important;} input[type=checkbox].GleeHL, input[type=radio].GleeHL { outline: 5px solid hsla(71, 89%, 70%, 1) !important;}</style></html>
