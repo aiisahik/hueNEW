@@ -1,13 +1,4 @@
-hueKnewApp = new Backbone.Marionette.Application();
 
-	// set initial time and progress
-	window.initialTime = +new Date;
-	window.progress = 0;
-
-	hueKnewApp.addRegions({
-	  mainRegion: "#hueKnewApp_gallery"
-	  // fieldRegion: "#hueKnewApp_fields"
-	});
 
 	ImageObject = Backbone.Model.extend({
 	});
@@ -50,20 +41,5 @@ hueKnewApp = new Backbone.Marionette.Application();
 		// 	// provide a way for the itemView to access the parent CompositeView
 			
 		// }
-	});
-
-	hueKnewApp.addInitializer(function(options){
-		
-		imageCollectionView = new ImageCollectionView({
-			collection: window.imageObjects,
-			itemView: ImageItemView
-		});
-		
-		hueKnewApp.mainRegion.show(imageCollectionView);
-	});
-
-	hueKnewApp.addInitializer(function(options){
-  		// new hueKnewAppRouter();
-  		Backbone.history.start();
 	});
 
