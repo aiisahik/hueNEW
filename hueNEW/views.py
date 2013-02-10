@@ -12,6 +12,7 @@ def home(request):
 	print settings._TEMPLATE_DIRS
 	print settings.MEDIA_URL
 	print settings.MEDIA_ROOT
+	print data.
 	# return HttpResponse("Text only, please.", content_type="text/plain")
 	return render_to_response('main.html', {'MEDIA_URL':settings.MEDIA_URL})
 
