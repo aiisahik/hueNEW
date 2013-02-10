@@ -8,6 +8,7 @@ from django.conf import settings
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'hueNEW.views.home', name='home'),
+    url(r'^graph/$', 'hueNEW.views.graph', name='graph'),
     # url(r'^hueNEW/', include('hueNEW.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
