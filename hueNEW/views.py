@@ -19,8 +19,9 @@ def iterate(dateEnd):
 	keywords = "runway"
 	limit = "10"
 	runway = hearstAPI('11561',dateEnd,keywords,limit)
-	print runway['count']
+	count = runway['count']
 	print dateEnd
+	jsonOBJ = ""
 	for x in runway['items']:
 		url = x['canonical_url']
 		title = x['meta_title']
@@ -42,7 +43,8 @@ def iterate(dateEnd):
 							'title':title,
 							'url':url,
 							'imageURL':imageURL}
-						print json.dumps(imagedict, sort_keys=True, indent=4, separators=(',', ': '))
+						# jsonOBJ =+ json.dumps(imagedict, sort_keys=True, indent=4, separators=(',', ': '))
+						jsonOBJ = json.dumps(imagedict)
 				# print json.dumps(x['pages'], sort_keys=True, indent=4, separators=(',', ': '))
 		    #     for page in x["pages"]:
 		    #         if "imagelist" in page:
@@ -56,12 +58,19 @@ def iterate(dateEnd):
 		    #                 fout.write(buf + "\n")
 		    #                 fout.flush()
 		# db.set_trace()
-	# dateEnd = runway['items'][199]['publish_date']
-	# print "new dateEnd: " + dateEnd
-	# if dateEnd < "2005-10-01T12:00:00.000Z":
-	# 	return render_to_response('main.html', {'MEDIA_URL':settings.MEDIA_URL})
-	# else: 
-	# 	iterate(dateEnd)
+
+	
+	print "new dateEnd: " + dateEnd + ", count: " + str(count)
+	if count == 0:
+		# no more! 
+		print jsonOBJ
+		return render_to_response('main.html', {'MEDIA_URL':settings.MEDIA_URL})
+	elif dateEnd < "2005-10-01T12:00:00.000Z":
+		print jsonOBJ
+		return render_to_response('main.html', {'MEDIA_URL':settings.MEDIA_URL})
+	else: 
+		dateEnd = runway['items'][count-1]['publish_date']
+		iterate(dateEnd)
 
 
 def hearstAPI(section_id,dateEnd,keywords,limit):
