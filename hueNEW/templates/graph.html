@@ -24,7 +24,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
-    <script src="{{ MEDIA_URL }}js/d3.js"></script>
+    <script src="{{ MEDIA_URL }}js/rickshaw/vendor/d3.v2.js"></script>
+    <script src="{{ MEDIA_URL }}js/rickshaw/vendor/d3.layout.min.js"></script>
     <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.js"></script>
     <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Class.js"></script>
     <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Compat.ClassList.js"></script>
@@ -114,10 +115,17 @@
       
       </div>
 
-      <form id="side_panel">
+    <button type="button" class="btn btn-primary btn-graphTypeForm" value="line">Line</button>
+    <button type="button" class="btn btn-primary btn-graphTypeForm" value="area">Area</button>
+    <button type="button" class="btn btn-primary btn-graphTypeForm" value="bar">Bar</button>
+    <button type="button" class="btn btn-primary btn-graphTypeForm" value="scatterplot">scatterplot</button>
+
+    <form id="side_panel">
     <h1>Random Data in the Future</h1>
     <section><div id="legend"></div></section>
+    
     <section>
+
       <div id="renderer_form" class="toggler">
         <input type="radio" name="renderer" id="area" value="area" checked>
         <label for="area">area</label>
@@ -193,6 +201,12 @@
         © hueKNEW
       </div>
     </div>
+
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/libraries/underscore.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/libraries/backbone.min.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/libraries/backbone.marionette.min.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/hearst-api.js"></script>
     <script>
 
       // set up our data series with 50 random data points
@@ -210,58 +224,46 @@
 
       var graph = new Rickshaw.Graph( {
         element: document.getElementById("chart"),
-        width: 900,
+        width: 400,
         height: 500,
-        renderer: 'area',
+        // renderer: 'area',
+        // renderer: 'bar',
         stroke: true,
         series: [
           {
-            color: palette.color(),
-            data: seriesData[0],
-            name: 'Moscow'
-          }, {
-            color: palette.color(),
-            data: seriesData[1],
-            name: 'Shanghai'
-          }, {
-            color: palette.color(),
-            data: seriesData[2],
-            name: 'Amsterdam'
-          }, {
-            color: palette.color(),
-            data: seriesData[3],
+            color: "rgb(0, 23, 255)",
+            data: [ { x: -1893456000, y: 25868573 }, { x: -1577923200, y: 29662053 }, { x: -1262304000, y: 34427091 }, { x: -946771200, y: 35976777 }, { x: -631152000, y: 39477986 }, { x: -315619200, y: 44677819 }, { x: 0, y: 49040703 }, { x: 315532800, y: 49135283 }, { x: 631152000, y: 50809229 }, { x: 946684800, y: 53594378 }, { x: 1262304000, y: 55317240 } ],
             name: 'Paris'
           }, {
             color: palette.color(),
-            data: seriesData[4],
-            name: 'Tokyo'
+            data: [ { x: -1893456000, y: 29888542 }, { x: -1577923200, y: 34019792 }, { x: -1262304000, y: 38594100 }, { x: -946771200, y: 40143332 }, { x: -631152000, y: 44460762 }, { x: -315619200, y: 51619139 }, { x: 0, y: 56571663 }, { x: 315532800, y: 58865670 }, { x: 631152000, y: 59668632 }, { x: 946684800, y: 64392776 }, { x: 1262304000, y: 66927001 } ],
+            name: 'Milan'
           }, {
             color: palette.color(),
-            data: seriesData[5],
+             data: [ { x: -1893456000, y: 29389330 }, { x: -1577923200, y: 33125803 }, { x: -1262304000, y: 37857633 }, { x: -946771200, y: 41665901 }, { x: -631152000, y: 47197088 }, { x: -315619200, y: 54973113 }, { x: 0, y: 62795367 }, { x: 315532800, y: 75372362 }, { x: 631152000, y: 85445930 }, { x: 946684800, y: 100236820 }, { x: 1262304000, y: 114555744 } ],
             name: 'London'
           }, {
             color: palette.color(),
-            data: seriesData[6],
+            data: [ { x: -1893456000, y: 7082086 }, { x: -1577923200, y: 9213920 }, { x: -1262304000, y: 12323836 }, { x: -946771200, y: 14379119 }, { x: -631152000, y: 20189962 }, { x: -315619200, y: 28053104 }, { x: 0, y: 34804193 }, { x: 315532800, y: 43172490 }, { x: 631152000, y: 52786082 }, { x: 946684800, y: 63197932 }, { x: 1262304000, y: 71945553 } ],
             name: 'New York'
           }
         ]
       } );
-
+      graph.renderer = 'bar';
       graph.render();
-
-      var slider = new Rickshaw.Graph.RangeSlider( {
-        graph: graph,
-        element: $('#slider')
-      } );
+      // var slider = new Rickshaw.Graph.RangeSlider( {
+      //   graph: graph,
+      //   element: $('#slider')
+      // } );
 
       var hoverDetail = new Rickshaw.Graph.HoverDetail( {
         graph: graph
       } );
 
-      var annotator = new Rickshaw.Graph.Annotate( {
-        graph: graph,
-        element: document.getElementById('timeline')
-      } );
+      // var annotator = new Rickshaw.Graph.Annotate( {
+      //   graph: graph,
+      //   element: document.getElementById('timeline')
+      // } );
 
       var legend = new Rickshaw.Graph.Legend( {
         graph: graph,
@@ -274,20 +276,20 @@
         legend: legend
       } );
 
-      var order = new Rickshaw.Graph.Behavior.Series.Order( {
-        graph: graph,
-        legend: legend
-      } );
+      // var order = new Rickshaw.Graph.Behavior.Series.Order( {
+      //   graph: graph,
+      //   legend: legend
+      // } );
 
-      var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight( {
-        graph: graph,
-        legend: legend
-      } );
+      // var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight( {
+      //   graph: graph,
+      //   legend: legend
+      // } );
 
-      var smoother = new Rickshaw.Graph.Smoother( {
-        graph: graph,
-        element: $('#smoother')
-      } );
+      // var smoother = new Rickshaw.Graph.Smoother( {
+      //   graph: graph,
+      //   element: $('#smoother')
+      // } );
 
       var ticksTreatment = 'glow';
 
@@ -306,45 +308,57 @@
 
       yAxis.render();
 
+            // var graphTypeForm = $('.btn-graphTypeForm');
+      $('.btn-graphTypeForm').click(function(e) {
+        var offsetMode = e.target.value;
 
-      var controls = new RenderControls( {
-        element: document.querySelector('form'),
-        graph: graph
-      } );
+        if (offsetMode == 'lines') {
+                graph.setRenderer('line');
+                // graph.offset = 'zero';
+        } else {
+                graph.renderer = offsetMode;
+                // graph.setRenderer(offsetMode);
+                // graph.offset = offsetMode;
+        }       
+        graph.render();
+        // graph.update();
+
+      });
+
+      // var controls = new RenderControls( {
+      //   element: document.querySelector('form'),
+      //   graph: graph
+      // } );
 
       // add some data every so often
 
-      var messages = [
-        "Changed home page welcome message",
-        "Minified JS and CSS",
-        "Changed button color from blue to green",
-        "Refactored SQL query to use indexed columns",
-        "Added additional logging for debugging",
-        "Fixed typo",
-        "Rewrite conditional logic for clarity",
-        "Added documentation for new methods"
-      ];
+      // var messages = [
+      //   "Changed home page welcome message",
+      //   "Minified JS and CSS",
+      //   "Changed button color from blue to green",
+      //   "Refactored SQL query to use indexed columns",
+      //   "Added additional logging for debugging",
+      //   "Fixed typo",
+      //   "Rewrite conditional logic for clarity",
+      //   "Added documentation for new methods"
+      // ];
 
-      setInterval( function() {
-        random.addData(seriesData);
-        graph.update();
+      // setInterval( function() {
+      //   random.addData(seriesData);
+      //   graph.update();
 
-      }, 3000 );
+      // }, 3000 );
 
-      function addAnnotation(force) {
-        if (messages.length > 0 && (force || Math.random() >= 0.95)) {
-          annotator.add(seriesData[2][seriesData[2].length-1].x, messages.shift());
-        }
-      }
+      // function addAnnotation(force) {
+      //   if (messages.length > 0 && (force || Math.random() >= 0.95)) {
+      //     annotator.add(seriesData[2][seriesData[2].length-1].x, messages.shift());
+      //   }
+      // }
 
-      addAnnotation(true);
-      setTimeout( function() { setInterval( addAnnotation, 6000 ) }, 6000 );
+      // addAnnotation(true);
+      // setTimeout( function() { setInterval( addAnnotation, 6000 ) }, 6000 );
 
       </script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/libraries/bootstrap.min.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/libraries/underscore.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/libraries/backbone.min.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/libraries/backbone.marionette.min.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/hearst-api.js"></script>
+    
   </body>
 </html>
