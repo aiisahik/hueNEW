@@ -1,0 +1,98 @@
+# -*- compile-command: "python cluster.py < color.json | tee cluster.json" -*-
+
+import os
+import simplejson as json
+import fileinput
+import datetime
+
+
+count = 8
+time = 0
+done = 0
+past = ""
+for line in fileinput.input():
+    #print line
+    x = json.loads(line)
+    if past != x[0]:
+        past = x[0]
+
+        if done:
+            time += 1
+            for n in range(0, len(bucket)):
+                if bucket[n] > 0:
+                    buf = n, time, bucket[n], dataset[n]
+                    print json.dumps(buf)
+            #print bucket
+            #print past
+        
+        done = 0
+        bucket = [0] * count
+        dataset = [[] for m in range(count)]
+        #print "-----"
+
+    color = x[2];
+    r,g,b = color
+    r = r / 128;
+    g = g / 128;
+    b = b / 128;
+    done = 1
+    k = r * 4 + g * 2 + b
+    bucket[k] += 1
+    dataset[k].append(x[1])
+
+#print bucket
+#print dataset
+
+
+
+
+#"items": x
+#  "origin_site_url" : "http://www.elle.com",
+#  "pages" : 
+#     "imagelist" : [
+#    {
+
+#    os.system("wget -O out.jpg " + line);
+#    im = Image.open("out.jpg")
+#    color = get_colors(im)
+#    print color
+#    os.system("viewnior out.jpg");
+#    os.system("viewnior square0.jpg");
+#    os.system("viewnior color0.jpg");
+#    os.system("viewnior square1.jpg");
+#    os.system("viewnior color1.jpg");
+#    os.system("viewnior square2.jpg");
+#    os.system("viewnior color2.jpg");
+
+
+#os.system("viewnior sample.jpg");
+#im = Image.open("sample.jpg")
+
+
+
+
+
+
+
+
+
+
+
+
+            
+#$month = sprintf("%02d", $m);
+#$file = "runway$y$month.json";
+
+
+#f = open("runway.json","r")
+
+#runway = json.load(f)
+#for x in runway["items"]:
+#    site = x["origin_site_url"]
+#    creation = x["creation_date"]
+#    print creation
+#    for page in x["pages"]:
+#        if "imagelist" in page:
+#            for image in page["imagelist"]:
+#                pass #print site + image["large_url"]
+
