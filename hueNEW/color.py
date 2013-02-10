@@ -1,6 +1,7 @@
 # -*- compile-command: "python color.py" -*-
 
 import Image
+import os
 
 def find_color(region):
     region = region.point(lambda i: i / 4)
@@ -40,7 +41,7 @@ def get_colors (im):
     color[1] = find_color(region)
     save_color(color[1], "color1.jpg")
 
-    point = (im.size[0]/2, im.size[1]/2 + width * 3 / 2) # bottom
+    point = (im.size[0]/2, im.size[1]/2 + width / 2) # bottom
     box = get_box(point, width, width)  # width x width
     region = im.crop(box)
     region.save("square2.jpg")
@@ -49,9 +50,36 @@ def get_colors (im):
     return color
 
 
-im = Image.open("sample.jpg")
-color = get_colors(im)
-print color
+
+
+import simplejson as json
+f = open("runway.json","r")
+runway = json.load(f)
+print runway
+
+
+"items": x
+  "origin_site_url" : "http://www.elle.com",
+  "pages" : 
+     "IMAGE_1_large_url" : "/cm/elle/images/Ps/elle-son-jung-wan-fall-2013-rtw-001-de-lg.jpg",
+
+#import fileinput
+#for line in fileinput.input():
+#    os.system("wget -O out.jpg " + line);
+#    im = Image.open("out.jpg")
+#    color = get_colors(im)
+#    print color
+#    os.system("viewnior out.jpg");
+#    os.system("viewnior square0.jpg");
+#    os.system("viewnior color0.jpg");
+#    os.system("viewnior square1.jpg");
+#    os.system("viewnior color1.jpg");
+#    os.system("viewnior square2.jpg");
+#    os.system("viewnior color2.jpg");
+
+
+#os.system("viewnior sample.jpg");
+#im = Image.open("sample.jpg")
 
 
 
