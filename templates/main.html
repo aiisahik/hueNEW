@@ -1,0 +1,316 @@
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Fashion Hackathon Demo</title>
+	<meta name="viewport" content="width=device-width">
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}js/underscore.min.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}js/backbone.min.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}js/backbone.marionette.min.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}js/jcarousellite_1.0.1.js"></script>
+
+<style type="text/css"></style>
+
+
+</head>
+<body>
+
+	<div id="hm-articles">
+		
+			<a href="http://www.harpersbazaar.com/beauty/backstage-beauty-fall-2013" class="item idx0" target="_blank" style="background-image:url(http://www.harpersbazaar.com/cm/harpersbazaar/images/R7/hbz-beauty-Alex-Wang-nyfw13-matte-skin-nude-lips-de.jpg)">
+				<p>Backstage Beauty Files: Fall 2013</p>
+			</a>
+		
+			<a href="http://www.harpersbazaar.com/fashion/fashion-articles/new-york-fashion-week-fall-2013-looks" class="item idx1" target="_blank" style="background-image:url(http://www.harpersbazaar.com/cm/harpersbazaar/images/4d/hbz-Prabal-Gurun-nyfwk13-01-de.jpg)">
+				<p>The Best Looks from New York Fashion Week: Fall 2013</p>
+			</a>
+		
+			<a href="http://www.harpersbazaar.com/beauty/best-nyfw-hair-makeup-nails" class="item idx2" target="_blank" style="background-image:url(http://www.harpersbazaar.com/cm/harpersbazaar/images/R2/hbz-beauty-Jason-Wu-nyfw13-de.jpg)">
+				<p>The Prettiest Hair, Makeup, and Nails from New York Fashion Week</p>
+			</a>
+		
+			<a href="http://www.harpersbazaar.com/fashion/fashion-articles/new-york-fashion-week-street-style-fall-2013" class="item idx3" target="_blank" style="background-image:url(http://www.harpersbazaar.com/cm/harpersbazaar/images/OH/hbz-street-style-nyfw13-day3-01-de.jpg)">
+				<p>Street Style Fall 2013: New York Fashion Week</p>
+			</a>
+		
+			<a href="http://www.harpersbazaar.com/fashion/fashion-articles/lublu-fall-2013-tommy-ton-shoot" class="item idx4" target="_blank" style="background-image:url(http://www.harpersbazaar.com/cm/harpersbazaar/images/mr/hbz-LUBLU-KiraPlastinina-DSC3196-copy-de.jpg)">
+				<p>It Girls Take to the Streets in Lublu Fall 2013</p>
+			</a>
+		
+			<a href="http://www.harpersbazaar.com/fashion/fashion-articles/best-dressed-celebrities-020813" class="item idx5" target="_blank" style="background-image:url(http://www.harpersbazaar.com/cm/harpersbazaar/images/gu/hbz-best-dressed-020713-Alexa-Chung-de.jpg)">
+				<p>Mr. Blasberg's Best-Dressed List: February 8th, 2013</p>
+			</a>
+		
+			<a href="http://www.harpersbazaar.com/beauty/best-antiaging-creams-0213" class="item idx6" target="_blank" style="background-image:url(http://www.harpersbazaar.com/cm/harpersbazaar/images/Wa/hbz-february-2013-beauty-skin-de.jpg)">
+				<p>Shop Younger-Looking Skin Savers</p>
+			</a>
+		
+			<a href="http://www.harpersbazaar.com/magazine/feature-articles/zaha-hadid-profile-0313" class="item idx7" target="_blank" style="background-image:url(http://www.harpersbazaar.com/cm/harpersbazaar/images/Em/hbz-march-2013-my-life-zaha-hadid-portrait-de.jpg)">
+				<p>My Life: Zaha Hadid</p>
+			</a>
+		
+			<a href="http://www.harpersbazaar.com/fashion/fashion-articles/valentines-day-lingerie-shopping" class="item idx8" target="_blank" style="background-image:url(http://www.harpersbazaar.com/cm/harpersbazaar/images/0O/hbz-Vday-2013-Ari-de.jpg)">
+				<p>Race-y Off: Shop Valentine's Day Lingerie from Sweet to Sultry</p>
+			</a>
+		
+			<a href="http://www.harpersbazaar.com/fashion/fashion-articles/amex-ch-carolina-herrera-show" class="item idx9" target="_blank" style="background-image:url(http://www.harpersbazaar.com/cm/harpersbazaar/images/uh/HBZ-ss13-02CH-00-ED-0124-014-de.jpg)">
+				<p>American Express Presents the CH Carolina Herrera Fashion Show at Lincoln Center</p>
+			</a>
+		
+			<a href="http://www.harpersbazaar.com/fashion/fashion-articles/the-look-season-two" class="item idx10" target="_blank" style="background-image:url(http://www.harpersbazaar.com/cm/harpersbazaar/images/hD/hbz-tyra-the-look-th.jpg)">
+				<p>The Look: Season Two</p>
+			</a>
+		
+			<a href="http://www.harpersbazaar.com/magazine/feature-articles/jean-georges-party-food-0313" class="item idx11" target="_blank" style="background-image:url(http://www.harpersbazaar.com/cm/harpersbazaar/images/Fq/hbz-march-2013-jean-georges-portrait-de.jpg)">
+				<p>Fashionable Food</p>
+			</a>
+		
+			<a href="http://www.harpersbazaar.com/fashion/fashion-articles/24-hours-with-diane-von-furstenberg-0313" class="item idx12" target="_blank" style="background-image:url(http://www.harpersbazaar.com/cm/harpersbazaar/images/x9/hbz-march-2013-my-list-dvf-by-julian-opie-de.jpg)">
+				<p>My List: Diane von Furstenberg in 24 Hours</p>
+			</a>
+		
+			<a href="http://www.harpersbazaar.com/fashion/fashion-articles/editors-fashion-week-shopping" class="item idx13" target="_blank" style="background-image:url(http://www.harpersbazaar.com/cm/harpersbazaar/images/bJ/hbz-flipbook-0205-FWResistance-Joanna-de.jpg)">
+				<p>Editors' Choice: Fashion Week Pièce de Résistance</p>
+			</a>
+		
+			<a href="http://www.harpersbazaar.com/fashion/fashion-articles/sarah-burton-profile-0313" class="item idx14" target="_blank" style="background-image:url(http://www.harpersbazaar.com/cm/harpersbazaar/images/18/hbz-march-2013-sarah-burton-jacket-de.jpg)">
+				<p>Fashion's Queen Bee</p>
+			</a>
+		
+			<a href="http://www.harpersbazaar.com/fashion/fashion-articles/valentines-day-gifts-for-men" class="item idx15" target="_blank" style="background-image:url(http://www.harpersbazaar.com/cm/harpersbazaar/images/Kq/hbz-valentines-day-gifts-for-men-smythson-de.jpg)">
+				<p>The Best Valentine's Day Gifts for Your Guy</p>
+			</a>
+		
+			<a href="http://www.harpersbazaar.com/magazine/feature-articles/vivienne-westwood-profile-0313" class="item idx16" target="_blank" style="background-image:url(http://www.harpersbazaar.com/cm/harpersbazaar/images/qk/hbz-march-2013-the-only-punk-left-collage-portrait-de.jpg)">
+				<p>The Only Punk Left: Vivienne Westwood</p>
+			</a>
+		
+			<a href="http://www.harpersbazaar.com/fashion/fashion-articles/designer-inspirations-fall-fashion-2013" class="item idx17" target="_blank" style="background-image:url(http://www.harpersbazaar.com/cm/harpersbazaar/images/yh/hbz-Thakoon-FW13-INSPIRATION-de.jpg)">
+				<p>Designer Mindset: New York Fashion Week Fall 2013</p>
+			</a>
+		
+	</div>
+	<div id="hm-loading">Loading Articles</div>
+
+	<script type="text/template" id="item-template">
+		{{ _.each(items, function(item, index){ }}
+			<a href="{{= item.canonical_url }}" class="item idx{{= index }}" target="_blank" {{ if ( item.imagelist && item.imagelist.length > 0 ){ print('style="background-image:url(' + item.imagelist[0].default_url + ')"'); } }}>
+				<p>{{= item.title }}</p>
+			</a>
+		{{ }); }}
+	</script>
+
+	<script src="/cm/shared/scripts/underscore-min.1.2.3.js"></script>
+	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<script>
+		(function( $ ){
+			"use strict";
+			var negativeDate = -62198755200000,
+			    negativeYearString = "-000001";
+			if (
+			    !Date.prototype.toISOString ||
+			    (new Date(negativeDate).toISOString().indexOf(negativeYearString) === -1)
+			) {
+			    Date.prototype.toISOString = function toISOString() {
+			        var result, length, value, year, month;
+			        if (!isFinite(this)) {
+			            throw new RangeError("Date.prototype.toISOString called on non-finite value.");
+			        }
+
+			        year = this.getUTCFullYear();
+
+			        month = this.getUTCMonth();
+			        // see https://github.com/kriskowal/es5-shim/issues/111
+			        year += Math.floor(month / 12);
+			        month = (month % 12 + 12) % 12;
+
+			        // the date time string format is specified in 15.9.1.15.
+			        result = [month + 1, this.getUTCDate(),
+			            this.getUTCHours(), this.getUTCMinutes(), this.getUTCSeconds()];
+			        year = (
+			            (year < 0 ? "-" : (year > 9999 ? "+" : "")) +
+			            ("00000" + Math.abs(year))
+			            .slice(0 <= year && year <= 9999 ? -4 : -6)
+			        );
+
+			        length = result.length;
+			        while (length--) {
+			            value = result[length];
+			            // pad months, days, hours, minutes, and seconds to have two
+			            // digits.
+			            if (value < 10) {
+			                result[length] = "0" + value;
+			            }
+			        }
+			        // pad milliseconds to have three digits.
+			        return (
+			            year + "-" + result.slice(0, 2).join("-") +
+			            "T" + result.slice(2).join(":") + "." +
+			            ("000" + this.getUTCMilliseconds()).slice(-3) + "Z"
+			        );
+			    };
+			}
+
+			$.getArticles = function getArticles( options, fn ){
+				//define our initial api url and data type we're expecting
+				var ajaxOptions = {
+					url: 'http://hearst.api.mashery.com/Article/search',
+					jsonp: '_callback',
+					dataType: 'jsonp',
+					cache: true
+				};
+				
+				//list of the valid api options
+				var validArgs = [
+					'article_category_id', 'article_id', 'article_section_id', 'article_source_id',
+					'article_template_id', 'article_type_id', 'author_id', 'body', 'creation_date_begin',
+					'creation_date_end', 'flow_id', 'import_ucid', 'is_an_import', 'issue_date',
+					'keywords', 'last_updated_by', 'last_updated_date_begin', 'last_updated_date_end',
+					'limit', 'print_issue_date', 'publish_date_begin', 'publish_date_end', 'published_only',
+					'rights_for_syndicate_id', 'shape', 'site_id', 'sort', 'start', 'sub_heading', 'api_key',
+					'ad_category_id', 'teaser', 'title', 'url_name', 'verbose', '_debug', '_pretty', '_callback'
+				], validArgCount = 0; //keep track of valid options.. we're going to require at least 1
+				
+				//options that require an ISO 8601 formatted date string
+				var dateArgs = [
+					'creation_date_begin', 'creation_date_end',
+					'publish_date_begin', 'publish_date_end',
+					'last_updated_date_begin', 'last_updated_date_end'
+				], date; //temp date we'll use for conversions
+				
+				//loop through all of the options being passed in
+				for ( var prop in options ){
+					if ( options.hasOwnProperty(prop) ){
+						//check to see if the option is valid
+						if ( validArgs.indexOf( prop ) > -1 ){
+							validArgCount++; //increment the number of valid args we have
+						} else {
+							//if the arg passed isn't valid, shoot out a warning and remove it
+							console.warn('getArticles: ' + prop + ' is not a valid option.');
+							delete options[ prop ];
+						}
+						//check to see if this argument is a date
+						if ( dateArgs.indexOf( prop ) > -1 ){
+							//try to create a new Date object from the value
+							date = new Date( options[prop] );
+							//if the product is an invlid date, throw an error
+							if ( date.toString() === "Invalid Date" || options[prop] === false || options[prop] === true || options[prop] === null ){
+								throw new Error('getArticles: ' + prop + ' contains an invalid date.');
+							}
+							//assure the arg is set to a ISO formatted date string
+							options[ prop ] = date.toISOString();
+						}
+					}
+				}
+				//if we don't have at least one valid arg, throw an error
+				if ( validArgCount < 1 ){ throw new Error('getArticles: Invalid Options'); }
+				//add the arguments and the callback to the ajax options
+				$.extend( ajaxOptions, {
+					data:    options,
+					success: ( $.isFunction(fn) ) ? fn : $.noop
+				});
+				//execute the ajax request and return the promise returned by jquery
+				return $.ajax( ajaxOptions );
+			};
+			})( jQuery );
+	</script>
+	<script>
+		(function(win, doc, $){
+			_.templateSettings = {
+				escape: /\{\{-([\s\S]+?)\}\}/g,
+				evaluate: /\{\{([\s\S]+?)\}\}/g,
+				interpolate : /\{\{=([\s\S]+?)\}\}/g
+			};
+
+			var options = {
+					api_key: 'ms8wq5a5275wpa3xde3jprx6',
+					site_id: 17,
+					limit: 18,
+					article_type_id: 1365,
+					start: 0,
+					shape: 'full'
+				};
+
+			var raf = (function(){
+					return  win.requestAnimationFrame       ||
+							win.oRequestAnimationFrame      ||
+							win.msRequestAnimationFrame     ||
+							win.mozRequestAnimationFrame    ||
+							win.webkitRequestAnimationFrame ||
+							function(fn){ setTimeout(fn, 1000/60); };
+				})();
+
+			var wh = win.innerHeight, //window height
+				sy = 0; //scroll y
+
+			var busy = false;
+
+			var loaded = 0,
+				total  = 0;
+
+			var target   = $('#hm-articles'),
+				loader   = $('#hm-loading'),
+				template = $('#item-template').html(),
+				doc      = $(doc);
+
+			$(win).on('resize', onResize)
+				  .on('scroll', onScroll);
+
+			getArticles();
+
+			function onScroll( evt ){
+				sy = window.scrollY;
+				if ( !busy && doc.height() - ( wh + sy ) < 1000 ){
+					busy = true;
+					getArticles();
+				}
+			}
+
+			function onResize( evt ){
+				wh = window.innerHeight;
+				if ( !busy && doc.height() - ( wh + sy ) < 1000 ){
+					busy = true;
+					getArticles();
+				}
+			}
+
+			function addArticles( json ){
+				target.append( _.template( template, { items: json.items }) );
+			}
+
+			function getArticles(){
+				var xhr = $.getArticles( options );
+
+				xhr.done(function(json){
+					
+					if ( total < 1 ){
+						total = json.total;
+						while ( total % options.limit > 0 ){
+							total--;
+						}
+					}
+
+					if ( loaded === total ){
+						$(win).off('scroll')
+							  .off('resize');
+					}
+
+					loaded += json.items.length;
+
+					raf(function(){
+						addArticles( json );
+					});
+
+					options.start += options.limit;
+					
+					busy = false;
+				});
+			}
+
+		})(window, document, jQuery);
+	</script>
+
+<div id="gleeBox" style="display:none" class="GleeThemeDefault gleeMediumSize"><input type="text" id="gleeSearchField" value="" autocomplete="off" class="ac_input GleeThemeDefault gleeMediumSize"><div id="gleeSub"><div id="gleeSubText"></div><div id="gleeSearchActivity"></div><div id="gleeSubURL"></div></div></div></body><style type="text/css">/*This block of style rules is injected by gleeBox*/.GleeReaped { background-color: #f9f2a5 !important; outline: 1px dotted #818181 !important; } .GleeHL { -webkit-box-shadow: hsla(71, 89%, 70%, 1) -2px -2px 0px, hsla(71, 89%, 70%, 1)  2px -2px 0px, hsla(71, 100%, 45%, 1) -2px  2px 0px, hsla(71, 100%, 45%, 1)  2px  2px 0px, hsla(71, 100%, 80%, 1)  0px 0px 0px 3px, rgba(42, 35, 0, 0.8)  1px  1px 3px 3px !important; border-radius: 3px !important; color: #000 !important; outline: none !important; border: none !important; background: -webkit-gradient(linear, left bottom, left top, color-stop(0, hsla(71, 100%, 47%, 1)), color-stop(1, hsla(71, 89%, 70%, 1))) !important;} a.GleeHL, .GleeHL a {color: #000 !important;} input[type=checkbox].GleeHL, input[type=radio].GleeHL { outline: 5px solid hsla(71, 89%, 70%, 1) !important;}</style></html>
