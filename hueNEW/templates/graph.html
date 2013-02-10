@@ -2,188 +2,39 @@
 <html lang="en">
   
   <head>
-    <meta charset="utf-8">
-    <title>
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Le styles -->
-    <style>
-      body { padding-top: 60px; /* 60px to make the container go all the way
-      to the bottom of the topbar */ }
-    </style>
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
-      </script>
-    <![endif]-->
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
-    <script src="{{ MEDIA_URL }}js/rickshaw/vendor/d3.v2.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/vendor/d3.layout.min.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Class.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Compat.ClassList.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Graph.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Graph.Renderer.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Graph.Renderer.Area.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Graph.Renderer.Line.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Graph.Renderer.Bar.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Graph.Renderer.ScatterPlot.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Graph.RangeSlider.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Graph.HoverDetail.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Graph.Annotate.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Graph.Legend.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Graph.Axis.Time.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Graph.Behavior.Series.Toggle.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Graph.Behavior.Series.Order.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Graph.Behavior.Series.Highlight.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Graph.Smoother.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Graph.Unstacker.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Fixtures.Time.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Fixtures.Number.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Fixtures.RandomData.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Fixtures.Color.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Color.Palette.js"></script>
-    <script src="{{ MEDIA_URL }}js/rickshaw/src/js/Rickshaw.Graph.Axis.Y.js"></script>
-    
-    <script src="{{ MEDIA_URL }}js/rickshaw-extensions.js"></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/bootstrap-responsive.min.css" />
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/main.css" />
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/graph.css" />
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}js/rickshaw/src/css/graph.css">
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}js/rickshaw/src/css/detail.css">
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}js/rickshaw/src/css/legend.css">
-    
-
-
-    <style>
-    </style>
+    {% include 'base_head.html' %}
   </head>
   <body>
-    <div class="navbar navbar-fixed-top navbar-inverse">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="#">
-            hueKNEW
-          </a>
-          <ul class="nav">
-            <li>
-              <a href="#">
-                Color
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                Season
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                Season
-              </a>
-            </li>
-          </ul>
-          <form class="navbar-form pull-right">
-          </form>
-        </div>
-      </div>
-    </div>
-
+    
+  {% include 'base_header.html' %}
 
     <div class="container">
-      <div class="hero-unit">
-        <div>
-          <h1>
-            COLORS by Year
-          </h1>
-          <p>
-            See how often a color appears by year.
-          </p>
-        </div>
-        <a class="btn btn-primary" href="#">
-          Show me baby! »
-        </a>
-      
+      {% include 'base_hero.html' %}
+      <section>
+        <button type="button" class="btn btn-primary btn-graphTypeForm" value="line">Line</button>
+        <button type="button" class="btn btn-primary btn-graphTypeForm" value="area">Area</button>
+        <button type="button" class="btn btn-primary btn-graphTypeForm" value="bar">Bar</button>
+        <button type="button" class="btn btn-primary btn-graphTypeForm" value="scatterplot">scatterplot</button>
+      </section>
+   
+   <div id="chart_container">
+    <div class="row">
+      <div class="span8">
+        <div id="chart"></div>
       </div>
-
-    <button type="button" class="btn btn-primary btn-graphTypeForm" value="line">Line</button>
-    <button type="button" class="btn btn-primary btn-graphTypeForm" value="area">Area</button>
-    <button type="button" class="btn btn-primary btn-graphTypeForm" value="bar">Bar</button>
-    <button type="button" class="btn btn-primary btn-graphTypeForm" value="scatterplot">scatterplot</button>
-
-    <form id="side_panel">
-    <h1>Random Data in the Future</h1>
-    <section><div id="legend"></div></section>
+      <div class="span4">
+        <div id="legend"></div>
+      </div>
+    </div>
+  <div id="legend_container">
+    <div id="smoother" title="Smoothing"></div>
     
-    <section>
-
-      <div id="renderer_form" class="toggler">
-        <input type="radio" name="renderer" id="area" value="area" checked>
-        <label for="area">area</label>
-        <input type="radio" name="renderer" id="bar" value="bar">
-        <label for="bar">bar</label>
-        <input type="radio" name="renderer" id="line" value="line">
-        <label for="line">line</label>
-        <input type="radio" name="renderer" id="scatter" value="scatterplot">
-        <label for="scatter">scatter</label>
-      </div>
-    </section>
-    <section>
-      <div id="offset_form">
-        <label for="stack">
-          <input type="radio" name="offset" id="stack" value="zero" checked>
-          <span>stack</span>
-        </label>
-        <label for="stream">
-          <input type="radio" name="offset" id="stream" value="wiggle">
-          <span>stream</span>
-        </label>
-        <label for="pct">
-          <input type="radio" name="offset" id="pct" value="expand">
-          <span>pct</span>
-        </label>
-        <label for="value">
-          <input type="radio" name="offset" id="value" value="value">
-          <span>value</span>
-        </label>
-      </div>
-      <div id="interpolation_form">
-        <label for="cardinal">
-          <input type="radio" name="interpolation" id="cardinal" value="cardinal" checked>
-          <span>cardinal</span>
-        </label>
-        <label for="linear">
-          <input type="radio" name="interpolation" id="linear" value="linear">
-          <span>linear</span>
-        </label>
-        <label for="step">
-          <input type="radio" name="interpolation" id="step" value="step-after">
-          <span>step</span>
-        </label>
-      </div>
-    </section>
-    <section>
-      <h6>Smoothing</h6>
-      <div id="smoother"></div>
-    </section>
-    <section></section>
-  </form>
-
-  <div id="chart_container">
-    <div id="chart"></div>
-    <div id="timeline"></div>
-    <div id="slider"></div>
   </div>
+  <div id="slider"></div>
+</div>
 
+
+  
 
       <div class="row">
         <div class="span4">
@@ -204,19 +55,11 @@
 
     <script type="text/javascript" src="{{ MEDIA_URL }}js/libraries/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/libraries/underscore.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/libraries/backbone.min.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/libraries/backbone.marionette.min.js"></script>
+    
     <script type="text/javascript" src="{{ MEDIA_URL }}js/hearst-api.js"></script>
     <script>
 
       // set up our data series with 50 random data points
-
-      var seriesData = [ [], [], [], [], [], [], [], [], [] ];
-      var random = new Rickshaw.Fixtures.RandomData(150);
-
-      for (var i = 0; i < 150; i++) {
-        random.addData(seriesData);
-      }
 
       var palette = new Rickshaw.Color.Palette( { scheme: 'classic9' } );
 
@@ -224,9 +67,9 @@
 
       var graph = new Rickshaw.Graph( {
         element: document.getElementById("chart"),
-        width: 400,
+        width: 600,
         height: 500,
-        // renderer: 'area',
+        renderer: 'line',
         // renderer: 'bar',
         stroke: true,
         series: [
@@ -248,23 +91,10 @@
             name: 'New York'
           }
         ]
-      } );
-      graph.renderer = 'bar';
+      });
       graph.render();
-      // var slider = new Rickshaw.Graph.RangeSlider( {
-      //   graph: graph,
-      //   element: $('#slider')
-      // } );
-
-      var hoverDetail = new Rickshaw.Graph.HoverDetail( {
-        graph: graph
-      } );
-
-      // var annotator = new Rickshaw.Graph.Annotate( {
-      //   graph: graph,
-      //   element: document.getElementById('timeline')
-      // } );
-
+      // graph.renderer = 'bar';
+      
       var legend = new Rickshaw.Graph.Legend( {
         graph: graph,
         element: document.getElementById('legend')
@@ -276,39 +106,12 @@
         legend: legend
       } );
 
-      // var order = new Rickshaw.Graph.Behavior.Series.Order( {
-      //   graph: graph,
-      //   legend: legend
-      // } );
-
-      // var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight( {
-      //   graph: graph,
-      //   legend: legend
-      // } );
-
-      // var smoother = new Rickshaw.Graph.Smoother( {
-      //   graph: graph,
-      //   element: $('#smoother')
-      // } );
-
-      var ticksTreatment = 'glow';
-
-      var xAxis = new Rickshaw.Graph.Axis.Time( {
-        graph: graph,
-        ticksTreatment: ticksTreatment
+      var axes = new Rickshaw.Graph.Axis.Time( {
+        graph: graph
       } );
+      axes.render();
 
-      xAxis.render();
-
-      var yAxis = new Rickshaw.Graph.Axis.Y( {
-        graph: graph,
-        tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
-        ticksTreatment: ticksTreatment
-      } );
-
-      yAxis.render();
-
-            // var graphTypeForm = $('.btn-graphTypeForm');
+      //       // var graphTypeForm = $('.btn-graphTypeForm');
       $('.btn-graphTypeForm').click(function(e) {
         var offsetMode = e.target.value;
 
@@ -316,14 +119,62 @@
                 graph.setRenderer('line');
                 // graph.offset = 'zero';
         } else {
-                graph.renderer = offsetMode;
-                // graph.setRenderer(offsetMode);
+                // graph.renderer = offsetMode;
+                graph.setRenderer(offsetMode);
                 // graph.offset = offsetMode;
         }       
         graph.render();
         // graph.update();
 
       });
+
+      var legend = $('#legend');
+      var Hover = Rickshaw.Class.create(Rickshaw.Graph.HoverDetail, {
+        render: function(args) {
+
+          legend.innerHTML = args.formattedXValue;
+
+          args.detail.sort(function(a, b) { return a.order - b.order }).forEach( function(d) {
+
+            var line = document.createElement('div');
+            line.className = 'line';
+
+            var swatch = document.createElement('div');
+            swatch.className = 'swatch';
+            swatch.style.backgroundColor = d.series.color;
+
+            var label = document.createElement('div');
+            label.className = 'label';
+            label.innerHTML = d.name + ": " + d.formattedYValue;
+
+            line.appendChild(swatch);
+            line.appendChild(label);
+
+            // legend.appendChild(line);
+
+            var dot = document.createElement('div');
+            dot.className = 'dot';
+            dot.style.top = graph.y(d.value.y0 + d.value.y) + 'px';
+            dot.style.borderColor = d.series.color;
+
+            this.element.appendChild(dot);
+
+            dot.className = 'dot active';
+
+            this.show();
+
+          }, this );
+        }
+
+      });
+
+      var hover = new Hover( { graph: graph } ); 
+
+      setTimeout(function () {
+        $('li.line').click(function(e){
+          $(e.currentTarget).find('.label').text();
+        });
+      },500);
 
       // var controls = new RenderControls( {
       //   element: document.querySelector('form'),
