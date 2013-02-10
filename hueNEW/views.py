@@ -8,11 +8,25 @@ import simplejson
 import parsepy as ParsePy
 import data
 import requests, json
+
+JSONDATA = ""
+
 def home(request):
-	iterate('2010-10-01T12:00:00.000Z')
-	return render_to_response('main.html', {'MEDIA_URL':settings.MEDIA_URL})
+	iterate('2011-10-01T12:00:00.000Z')
+	# print JSONDATA
+	global JSONDATA
+	JSONDATA = "["+JSONDATA+"]"
+	jsonObj = json.loads(JSONDATA)
+
+	# print JSONDATA
+	# pdb.set_trace()
+	# jsonDD = jsonObj.stringify(testObject);
+	jsonDD = json.dumps(jsonObj)
+	return render_to_response('graph.html', {'MEDIA_URL':settings.MEDIA_URL, 'jsonData':jsonDD})
+	# return render_to_response('main.html', {'MEDIA_URL':settings.MEDIA_URL})
 
 	# iterate('2010-09-01T12:00:00.000Z')
+
 
 def iterate(dateEnd):
 	# runway = json.load(f)
@@ -21,7 +35,8 @@ def iterate(dateEnd):
 	runway = hearstAPI('11561',dateEnd,keywords,limit)
 	count = runway['count']
 	print dateEnd
-	jsonOBJ = ""
+	
+	i = 0
 	for x in runway['items']:
 		url = x['canonical_url']
 		title = x['meta_title']
@@ -44,30 +59,33 @@ def iterate(dateEnd):
 							'url':url,
 							'imageURL':imageURL}
 						# jsonOBJ =+ json.dumps(imagedict, sort_keys=True, indent=4, separators=(',', ': '))
-						jsonOBJ = json.dumps(imagedict)
+						# print json.dumps(imagedict)
+						global JSONDATA
+						jsonStr = json.dumps(imagedict)
+						# JSONDATA = JSONDATA.append(jsonStr)
+						if JSONDATA == "":
+							JSONDATA = jsonStr
+						else: 
+							JSONDATA = JSONDATA + ","+jsonStr
+						# jsonOBJ[i] = jsonOBJ.append(jsonData)
+						i += 1
+						# pdb.set_trace()
+						# print JSONDATA
 				# print json.dumps(x['pages'], sort_keys=True, indent=4, separators=(',', ': '))
-		    #     for page in x["pages"]:
-		    #         if "imagelist" in page:
-		    #             for image in page["imagelist"]:
-		    #                 url = site + image["large_url"]
-		    #                 os.system("wget -O out.jpg " + url);
-		    #                 im = Image.open("out.jpg")
-		    #                 color = get_colors(im)
-		    #                 record = [ creation, url, color[0] ]
-		    #                 buf = json.dumps(record)
-		    #                 fout.write(buf + "\n")
-		    #                 fout.flush()
-		# db.set_trace()
 
 	
 	print "new dateEnd: " + dateEnd + ", count: " + str(count)
 	if count == 0:
 		# no more! 
-		print jsonOBJ
-		return render_to_response('main.html', {'MEDIA_URL':settings.MEDIA_URL})
+		# JSONDATA = "["+JSONDATA + "]"
+		return JSONDATA
+		# return render_to_response('graph.html', {'MEDIA_URL':settings.MEDIA_URL, 'jsonData':JSONDATA})
 	elif dateEnd < "2005-10-01T12:00:00.000Z":
-		print jsonOBJ
-		return render_to_response('main.html', {'MEDIA_URL':settings.MEDIA_URL})
+		# print JSONDATA
+		# JSONDATA = "["+JSONDATA + "]"
+		if not JSONDATA == None:
+			return JSONDATA
+		# return render_to_response('graph.html', {'MEDIA_URL':settings.MEDIA_URL, 'jsonData':JSONDATA})
 	else: 
 		dateEnd = runway['items'][count-1]['publish_date']
 		iterate(dateEnd)
