@@ -14,6 +14,20 @@ body, p, h1, h2, h3 {
 	padding:0;
 }
 
+div.image {
+	display: block;
+	padding: 4px;
+	line-height: 1;
+	background-color: #efefef;
+	border: 1px solid #00000;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.075);
+	-moz-box-shadow: 0 1px 1px rgba(0,0,0,0.075);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.075);
+}
+
 #hm-articles {
 	font-size:0;
 	width: 1000px;
@@ -32,7 +46,7 @@ body, p, h1, h2, h3 {
 	left:10px;
 }
 .item {
-	font-size:16px;
+	font-size:12px;
 	width:250px;
 	height:250px;
 	float:left;
@@ -46,7 +60,7 @@ body, p, h1, h2, h3 {
 .item.idx0, .item.idx11{
 	width:500px;
 	height:500px;
-	font-size:22px;
+	font-size:12px;
 	line-height:26px;
 }
 .item.idx11 {
@@ -77,7 +91,7 @@ body, p, h1, h2, h3 {
 	.item.idx7, .item.idx12 {
 		width:500px;
 		height:500px;
-		font-size:22px;
+		font-size:16px;
 		line-height:26px;
 	}
 	.item.idx7 {
@@ -87,7 +101,7 @@ body, p, h1, h2, h3 {
 
 @media screen and (max-width:750px){
 	#hm-articles, #hm-loading {
-		width:320px;
+		width:150px;
 	}
 	.item {
 		float:left !important;
@@ -96,9 +110,9 @@ body, p, h1, h2, h3 {
 		font-size:16px !important;
 	}
 	.item:nth-child(3n+1){
-		width:320px !important;
-		height:320px !important;
-		font-size:22px !important;
+		width:250 !important;
+		height:250px !important;
+		font-size:16px !important;
 		line-height:26px !important;
 	}
 }

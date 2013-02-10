@@ -18,7 +18,7 @@ hueKnewApp = new Backbone.Marionette.Application();
 
 	ImageItemView = Backbone.Marionette.ItemView.extend({
 		tagName: "div",
-		className: "",
+		className: "image",
 		template: "#imageitem-template",
 		events: {
 		},
