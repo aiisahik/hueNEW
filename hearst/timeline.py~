@@ -1,0 +1,31 @@
+# -*- compile-command: "python timeline.py" -*-
+
+import os
+import simplejson as json
+import fileinput
+
+
+for line in fileinput.input("cluster.json"):
+    x = json.loads(line)
+    last = x[1]
+
+print last
+
+for cluster in range(0, 8):
+    start = 0
+    color = "rgb(%d,%d,%d)" % ((cluster/4)*128+32, ((cluster%4)/2)*128+32, 
+                                   ((cluster%2)*128)+32)
+    ds = dict([('color', color), 
+               ('data', [])
+               ])
+    
+    for line in fileinput.input("cluster.json"):
+        x = json.loads(line)
+        if x[0] == cluster:
+            current = x[1]
+            print current
+            ds["data"].append({ "x" : x[1], "y" : x[2] })
+
+
+    print json.dumps(ds)
+
